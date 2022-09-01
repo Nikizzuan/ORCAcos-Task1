@@ -8,12 +8,13 @@ using Photon.Realtime;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
-    public bool IsholdingBall;
+
+    public bool isholdingball;
     public float speed;
     public Rigidbody2D rb;
     Vector2 moveDirection = Vector2.zero;
-    private Vector2 startpostion;
-    private Vector2 startpostionchild;
+    public Vector2 startpostion;
+    private GameObject ball;
     [SerializeField] private PhotonView view;
 
 
@@ -35,8 +36,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Start()
     {
         if (!view.IsMine) return;
-        startpostion = this.gameObject.transform.position;
-        startpostionchild = this.gameObject.transform.GetChild(0).transform.position;
+       startpostion = this.gameObject.transform.position;
+       ball = this.gameObject.transform.GetChild(0).gameObject;
+     
         rb = this.GetComponent<Rigidbody2D>();
     }
 
@@ -44,9 +46,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void Update()
     {
         if (!view.IsMine) return;
-        if (IsholdingBall)
+        if (isholdingball)
         {
-
+            return;
         }
         else
         {
@@ -69,7 +71,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         if (!view.IsMine) return;
         rb.velocity = Vector2.zero;
-        this.gameObject.transform.GetChild(0).transform.position = startpostionchild;
-        transform.position = startpostion;
+        this.transform.position = startpostion;
     }
 }

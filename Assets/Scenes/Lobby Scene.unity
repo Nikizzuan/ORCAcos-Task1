@@ -282,7 +282,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 999
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!4 &982707066
@@ -493,11 +493,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1798476331160354019, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -78
+      value: -0.0000076294
       objectReference: {fileID: 0}
     - target: {fileID: 1798476331160354019, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -194
+      value: -189.85
       objectReference: {fileID: 0}
     - target: {fileID: 2934842942731264068, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -553,11 +553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1476.7639
+      value: 687.55
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 540
+      value: 429.71
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_LocalPosition.x
@@ -589,11 +589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1031
+      value: 479.99
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 377
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4885811252658726299, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -610,6 +610,10 @@ PrefabInstance:
     - target: {fileID: 4885811252658726303, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_Name
       value: Lobby ui
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885811252801338573, guid: 17175b3044664334c88ead09fac1e352, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4885811253089123320, guid: 17175b3044664334c88ead09fac1e352, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

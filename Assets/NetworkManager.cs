@@ -37,8 +37,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        errorMsg.text = "Disconnected :" + cause;
+        Debug.Log(cause);
+        base.OnDisconnected(cause);
+    }
+
     public override void OnConnectedToMaster()
     {
+        errorMsg.text = "Connected to photon";
         PhotonNetwork.JoinLobby();
     }
 
