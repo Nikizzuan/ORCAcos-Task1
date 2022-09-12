@@ -23,14 +23,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Awake()
     {
         // if an instance already exists and it's not this one - destroy us
-        if (instance != null && instance != this)
-            gameObject.SetActive(false);
-        else
-        {
-            // set the instance
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+
     }
     private void Start()
     {
@@ -52,7 +45,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        MainMenu.SetActive(true);
+        if (MainMenu != null)
+        {
+            MainMenu.SetActive(true);
+        }
+
 
     }
 
@@ -60,7 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
 
-        if (createNameInput.text.Length < 1)
+        /*if (createNameInput.text.Length < 1)
         {
             Debug.LogError("Error: please check if the name inputfield and the create room inputfield are not empty!");
             errorMsg.text = "Error: please check if the name inputfield is not empty!";
@@ -71,10 +68,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.LogError("Error: please check if the name inputfield and the create room inputfield are not empty!");
             errorMsg.text = "Error: please check if the name inputfield is not empty!";
             return;
-        }
+        }*/
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
-        PhotonNetwork.CreateRoom(createNameInput.text, roomOptions, null);
+        PhotonNetwork.CreateRoom("New", roomOptions, null);
+    
     }
 
     public override void OnCreatedRoom()
@@ -94,12 +92,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public void JoinRoom(string roomname)
     {
-        if (roomname.Length < 1)
-        {
-            Debug.LogError("Error: please check if the name inputfield is not empty!");
-            errorMsg.text = "Error: please check if the name inputfield is not empty!";
-            return;
-        }
+        /* if (roomname.Length < 1)
+         {
+             Debug.LogError("Error: please check if the name inputfield is not empty!");
+             errorMsg.text = "Error: please check if the name inputfield is not empty!";
+             return;
+         }*/
         PhotonNetwork.JoinRoom(roomname);
     }
 
@@ -112,14 +110,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.LogError("Error: creating room : " + returnCode);
         errorMsg.text = "Error: creating room : " + returnCode;
-        JoinRoom(createNameInput.text);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 2;
+
+        PhotonNetwork.JoinRandomOrCreateRoom(null, 2, MatchmakingMode.FillRoom, TypedLobby.Default, null, null, roomOptions, null);
+        // JoinRoom("New");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.LogError("Error: joining exists : " + returnCode);
         errorMsg.text = "Error: joining exists : " + returnCode;
-    }
 
+    }
 
 }

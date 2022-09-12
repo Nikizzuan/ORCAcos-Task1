@@ -111,9 +111,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933057610787050797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1.5, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.01, y: -3.8, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.5, z: 1}
   m_Children:
   - {fileID: 6933057611593407353}
   m_Father: {fileID: 0}
@@ -204,19 +204,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933057610787050797}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!114 &4691268369301372918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,11 +252,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4c4276e77e8bb4ebcba3f86959d0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isholdingball: 1
+  isholdingball: 0
   speed: 5
+  shootPointSpeed: 1
+  shootPoint: {fileID: 1575126475231384675}
+  playBall: {fileID: 0}
   rb: {fileID: 6933057610787050799}
   startpostion: {x: 0, y: 0}
   view: {fileID: 4691268369301372918}
+  lunchForce: 50
   PlayerControl:
     m_Name: Player Control
     m_Type: 0
@@ -332,6 +336,7 @@ GameObject:
   - component: {fileID: 6933057611593407358}
   - component: {fileID: 6933057611593407359}
   - component: {fileID: 1876524820}
+  - component: {fileID: 5374026004388565574}
   m_Layer: 0
   m_Name: Ballpoint
   m_TagString: Untagged
@@ -438,7 +443,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933057611593407357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b10220c92270a048aba9e0f127ed02f, type: 3}
   m_Name: 
@@ -519,4 +524,27 @@ MonoBehaviour:
   shootPointSpeed: 10
   shootPoint: {fileID: 1575126475231384675}
   playBall: {fileID: 0}
-  view: {fileID: 4691268369301372918}
+  player: {fileID: 6933057610787050797}
+  view: {fileID: 5374026004388565574}
+--- !u!114 &5374026004388565574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933057611593407357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

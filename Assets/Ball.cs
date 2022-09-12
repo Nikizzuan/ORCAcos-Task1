@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviourPunCallbacks
 {
 
     public InputAction PlayerControl;
@@ -14,13 +14,14 @@ public class Ball : MonoBehaviour
     public float shootPointSpeed;
     public GameObject shootPoint;
     public GameObject playBall;
+    public GameObject player;
     [SerializeField] private PhotonView view;
 
     private void Start()
     {
         if (!view.IsMine) return;
         shootPoint = this.gameObject.transform.GetChild(0).gameObject;
-        playBall = GameObject.FindGameObjectWithTag("Ball");
+       // playBall = GameObject.FindGameObjectWithTag("Ball");
     }
     private void OnEnable()
     {
@@ -37,11 +38,14 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!view.IsMine) return;
+        if (!PhotonNetwork.IsMasterClient) return;
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
+
             Shoot();
+
         }
+       
 
         moveDirection = PlayerControl.ReadValue<Vector2>();
 
@@ -50,7 +54,7 @@ public class Ball : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!view.IsMine) return;
+        if (!PhotonNetwork.IsMasterClient) return;
         Vector2 ballPosition = transform.position;
         Vector2 ArrowPositon = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
         //Mouse.current.position.ReadValue()
@@ -61,12 +65,17 @@ public class Ball : MonoBehaviour
 
     void Shoot() {
 
-        this.GetComponentInParent<PlayerMovement>().isholdingball = false;
-        PlayerControl.Disable();
-        this.gameObject.SetActive(false);
-        playBall.GetComponent<Rigidbody2D>().velocity = shootPoint.transform.right * lunchForce;
+
+             playBall = GameObject.FindGameObjectWithTag("Ball");
+         playBall.GetComponent<Rigidbody2D>().velocity = shootPoint.transform.right * lunchForce;
+             player.GetComponentInParent<PlayerMovement>().isholdingball = false;
+             player.gameObject.SetActive(false);
+             player.GetComponent<Ball>().PlayerControl.Disable();
 
     }
 
 
-  }
+}
+
+
+  
